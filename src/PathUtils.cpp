@@ -159,7 +159,19 @@ fs::path PathUtils::GetCachePath()
 	return fs::path(getenv("HOME")) / ".cache";
 }
 
-#else	// !DEFINED(__ANDROID__) || !DEFINED(__APPLE__) || !DEFINED(__linux__) || !DEFINED(__FreeBSD__)
+#elif defined(SWITCH)
+
+fs::path PathUtils::GetAppResourcesPath()
+{
+	return fs::path("/switch/Play");
+}
+
+fs::path PathUtils::GetPersonalDataPath()
+{
+	return fs::path("/switch/Play");
+}
+
+#else	// !DEFINED(__ANDROID__) || !DEFINED(__APPLE__) || !DEFINED(__linux__) || !DEFINED(__FreeBSD__) || !DEFINED(SWITCH)
 
 #include <pwd.h>
 
