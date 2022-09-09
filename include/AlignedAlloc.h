@@ -17,6 +17,8 @@ static size_t framework_getpagesize()
 	SYSTEM_INFO si;
 	GetSystemInfo(&si);
 	return si.dwPageSize;
+#elif defined(__SWITCH__)
+	return 4096;
 #else
 	return sysconf(_SC_PAGESIZE);
 #endif
